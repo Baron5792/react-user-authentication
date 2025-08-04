@@ -1,0 +1,11 @@
+@keyframes shrinkBorder {
+    from { width: 100%;}
+    to { width: 0% }
+}
+
+.alert-border {
+    height: 4px;
+    background: #721c24; /* Error color (adjust for success) */
+    animation: shrinkBorder 3s linear forwards;
+    margin-top: 10px;
+}

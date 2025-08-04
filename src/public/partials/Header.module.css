@@ -1,0 +1,20 @@
+.isActive {
+    border-bottom: 2px solid black;
+    color: black;
+    padding-bottom: 10px;
+    font-weight: 400;
+}
+
+.notActive {
+    color: grey;
+}
+
+.header {
+    width: 500px;
+}
+
+@media screen and (max-width: 767px) {
+    .header {
+        width: 100%;
+    }
+}
