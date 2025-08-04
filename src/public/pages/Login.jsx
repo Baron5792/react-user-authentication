@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Alert from "../components/Alert";
 import styles from './Login.module.css';
+import { ToastContainer, toast } from "react-toastify";
 
 
 function Login() {
 
     const [ showPassword, setShowPassword ] = useState(false);
-    const [showAlert, setShowAlert] = useState(false);  // for alerts
-
     const [ formData, setFormData ] = useState({
         email: '',
         password: '',
@@ -26,27 +24,25 @@ function Login() {
         e.preventDefault();
         const isEmpty = Object.values(formData).some(value => value.trim() === '' );
         if (isEmpty) {
-            setShowAlert(true);
+            toast.error('All fields are required to proceed, please try again later.', {
+                toastId: 'form-error',
+                position: 'bottom-left',
+                autoClose: 4000
+            })
         }
 
-        // if successful alert here
-        // set timeout for alerts
-        setTimeout(() => {
-            setShowAlert(false);
-        }, 3000);
+        else {
+            toast.success('Login successful', {
+                toastId: 'form-success',
+                position: 'bottom-center',
+                autoClose: 4000
+            })
+        }
+
     }
 
     return (
         <>
-            {/* alerts here */}
-            {showAlert && (
-                <Alert
-                    type='error'
-                    message='Please fill in all required fields'
-                    // onClose={!showAlert}
-                />
-            )}
-
             <div className={`${styles['content']}`}>
                 <form action="" method='POST' onSubmit={handleSubmit}>
                     <div className="form-group mt-2">
@@ -93,6 +89,8 @@ function Login() {
                     </div>
                 </form>
             </div>
+
+            <ToastContainer />
         </>
     )
 }
